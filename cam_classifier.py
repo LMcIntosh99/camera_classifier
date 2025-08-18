@@ -12,6 +12,12 @@ while True:
     if not ret:
         break
 
+    # Reduce noise with Gaussian blur
+    frame = cv2.GaussianBlur(frame, (3, 3), 0)
+
+    # Convert BGR to RGB
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
     # Run YOLOv8 inference on the frame
     results = model(frame, stream=True, verbose=False)
 
